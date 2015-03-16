@@ -11,13 +11,7 @@ trap ctrl_c INT TERM EXIT
 while true; do
     echo ""
 
-    erl -make
-
-    if [ $? == 0 ]
-    then
-	echo ""
-	erl -noshell -pa ebin -s facto_test test -run init stop
-    fi
+    rebar compile eunit skip_deps=true
 
     echo ""
     date +"%k:%M:%S - Waiting for source modification..."

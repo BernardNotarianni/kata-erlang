@@ -1,0 +1,14 @@
+{application, kata,
+ [
+  {description, "An Erlang kata library"},
+  {vsn, "1"},
+  {modules, [
+             kata
+            ]},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {env, []}
+ ]}.
