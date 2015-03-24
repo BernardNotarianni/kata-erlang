@@ -12,5 +12,5 @@ while true; do
     rebar compile eunit skip_deps=true
     echo ""
 
-    inotifywait -qr -e modify -e create -e move -e delete src test
+    inotifywait -qr -e modify -e create -e move -e delete src test --exclude "\.\#.*"
 done

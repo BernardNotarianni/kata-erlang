@@ -12,11 +12,9 @@ wordcount (L) ->
 wordcount ([],D)->
     D;
 wordcount (L, D) ->
-    Words = string:tokens(hd(L), " "),
+    Words = string: tokens (hd(L), " "),
     D2 = subwordcount (Words, D),
     wordcount(tl(L),D2).
-
-
 
 subwordcount ([], D) ->
     D;
@@ -26,5 +24,5 @@ subwordcount(L, D) ->
             {ok, CurrentCount} -> CurrentCount;
             error -> 0
         end,
-    D2 = dict:store(Word, N+1, D),
+    D2 = dict: store (Word, N+1, D),
     subwordcount (tl(L), D2).

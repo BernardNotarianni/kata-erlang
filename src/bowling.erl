@@ -11,6 +11,3 @@ score ([10, T1, T2]) -> 10 + T1 + T2;
 score ([10, T1, T2 | Other]) -> 10 + T1 + T2 + score ([T1,T2|Other]);
 
 score ([H|T]) -> H + score(T).
-
-
-
