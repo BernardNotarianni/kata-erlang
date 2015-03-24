@@ -1,17 +1,30 @@
--module(wordcount).
--export([wordcount/1]).
+-module (wordcount).
+-export ([wordcount/1]).
+-export ([file/1]).
 
-wordcount(String) ->
-    L = string:tokens(String, " "),
-    wordcount (L, dict: new()).
+file (FileName) ->
+    Lines = read_file: all (FileName),
+    wordcount (Lines).
 
-wordcount ([], D) ->
+wordcount (L) ->
+    wordcount (L, dict:new()).
+
+wordcount ([],D)->
     D;
-wordcount(L, D) ->
+wordcount (L, D) ->
+    Words = string:tokens(hd(L), " "),
+    D2 = subwordcount (Words, D),
+    wordcount(tl(L),D2).
+
+
+
+subwordcount ([], D) ->
+    D;
+subwordcount(L, D) ->
     Word = hd(L),
     N = case dict: find (Word, D) of
             {ok, CurrentCount} -> CurrentCount;
             error -> 0
         end,
     D2 = dict:store(Word, N+1, D),
-    wordcount (tl(L), D2).
+    subwordcount (tl(L), D2).
